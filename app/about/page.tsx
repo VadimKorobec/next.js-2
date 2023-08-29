@@ -1,6 +1,13 @@
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: 'About | Next App',
+  
+}
+
 const About = () => {
     return <>
-        <h1 className="text-center text-3xl font-bold py-2">About Page</h1>
+        <h3 className="text-center  font-bold py-2">Select subitem</h3>
     </>
 }
 
