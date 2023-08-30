@@ -1,36 +1,50 @@
+ 'use client'
+import PostSearch from "@/components/PostSearch"
+import Posts from "@/components/Posts"
+import { usePosts } from "@/store"
+ import { getAllPosts } from "@/services/getPosts"
 import { Metadata } from "next"
-import Link from "next/link"
+import { shallow } from "zustand/shallow"
+ import { useEffect, useState } from "react"
 
 export const metadata: Metadata = {
-  title: 'Blog | Next App',
-  
+    title: 'Blog | Next App',
+
 }
 
-export default async function Blog (){
-    const posts = await getData()
+const Blog = () => {
+    // const [posts,loading,getAllPosts] = usePosts(state => [
+    //     state.posts,state.loading,state.getAllPosts
+    // ], shallow)
+    
+     const [posts, setPosts] = useState<string[]>([])
+     const [loadin, setLoading] = useState(true)
+
+     useEffect(() => {
+         getAllPosts()
+             .then(setPosts)
+             .finally(() => setLoading(false))
+     }, [])
+
+    // useEffect(() => {
+    //   getAllPosts()
+    // }, [getAllPosts])
+    
+
 
     return <><h1 className="text-center font-bold text-3xl mb-3">Blog page</h1>
-        {posts.map((post: any) => (
-            <li className=" ml-10"  key={post.id}>
-                <Link className="hover:underline"  href={`/blog/${post.id}`}>{ post.title}</Link>
-            </li>
-        ))
         
+         <PostSearch onSearch={setPosts}/> 
+        {loadin ? <h3 className=" text-center text-3xl font-bold">Loading ... </h3> : 
+           <Posts posts={posts}/>
         }
-    </>
-    
-        
 
-    
+    </>
+
+
+
+
 }
 
+export default Blog
 
-
- const getData =async () => {
-     const response = await fetch('https://jsonplaceholder.typicode.com/posts',
-         { next: { revalidate: 60 } })
-     
-     if (!response.ok) throw new Error("Unable to fetch posts")
-     
-       return response.json()
- }

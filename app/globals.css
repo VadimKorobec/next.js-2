@@ -3,3 +3,10 @@
 @tailwind utilities;
 
 
+.link{
+    @apply font-bold text-base text-white no-underline hover:underline;
+}
+
+.link-active{
+    @apply font-bold text-base text-yellow-500;
+} 
