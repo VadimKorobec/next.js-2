@@ -1,16 +1,16 @@
  'use client'
 import PostSearch from "@/components/PostSearch"
 import Posts from "@/components/Posts"
-import { usePosts } from "@/store"
+// import { usePosts } from "@/store"
  import { getAllPosts } from "@/services/getPosts"
-import { Metadata } from "next"
-import { shallow } from "zustand/shallow"
+// import { Metadata } from "next"
+// import { shallow } from "zustand/shallow"
  import { useEffect, useState } from "react"
 
-export const metadata: Metadata = {
-    title: 'Blog | Next App',
+// export const metadata: Metadata = {
+//     title: 'Blog | Next App',
 
-}
+// }
 
 const Blog = () => {
     // const [posts,loading,getAllPosts] = usePosts(state => [
