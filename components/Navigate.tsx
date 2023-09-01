@@ -23,9 +23,9 @@ const Navigate: FC<NavigateProps> = ({ navLinks }) => {
         return <Link key={link.label} href={link.href} className={isActive ? 'link-active' : 'link'}>{link.label}</Link>
     })}
         {session.data && (
-            <Link href='/profile'>Profile</Link>
+            <Link className="link" href='/profile'>Profile</Link>
         )}
-        {session.data ? <Link href='#' onClick={()=>signOut({callbackUrl:'/'})}>SignOut</Link> : <Link href='/api/auth/signin'>SignIn</Link>}
+        {session.data ? <Link className="link" href='#' onClick={()=>signOut({callbackUrl:'/'})}>SignOut</Link> : <Link className="link" href='/signin'>SignIn</Link>}
     </>
 }
 
